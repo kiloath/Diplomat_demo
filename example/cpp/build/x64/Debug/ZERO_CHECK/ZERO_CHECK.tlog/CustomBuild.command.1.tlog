@@ -1,0 +1,10 @@
+^C:\USERS\KILOATH\KORICE\KODIPLOMAT\DIPLOMAT\EXAMPLE\CPP\BUILD\CMAKEFILES\2600A225E47CC24A8974589D44F227E8\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/kiloath/korice/kodiplomat/diplomat/example/cpp -BC:/Users/kiloath/korice/kodiplomat/diplomat/example/cpp/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/kiloath/korice/kodiplomat/diplomat/example/cpp/build/diplomat_example.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
