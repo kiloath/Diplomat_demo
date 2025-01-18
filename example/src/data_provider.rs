@@ -2,7 +2,7 @@
 #[diplomat::abi_rename = "icu4x_{0}_mv1"]
 #[diplomat::attr(auto, namespace = "icu4x")]
 pub mod ffi {
-    use icu_provider::any::AnyProvider;
+    use icu_provider::AnyProvider;
 
     #[diplomat::opaque]
     /// An  data provider, capable of loading  data keys from some source.

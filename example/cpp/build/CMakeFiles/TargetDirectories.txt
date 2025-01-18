@@ -1,3 +1,0 @@
-C:/Users/kiloath/korice/kodiplomat/diplomat/example/cpp/build/CMakeFiles/diplomat_example.dir
-C:/Users/kiloath/korice/kodiplomat/diplomat/example/cpp/build/CMakeFiles/ALL_BUILD.dir
-C:/Users/kiloath/korice/kodiplomat/diplomat/example/cpp/build/CMakeFiles/ZERO_CHECK.dir

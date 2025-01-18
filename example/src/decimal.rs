@@ -7,7 +7,6 @@ pub mod ffi {
     use diplomat_runtime::DiplomatWrite;
     use icu_provider::DataLocale;
     use writeable::Writeable;
-    
 
     use crate::{
         data_provider::ffi::DataProvider, fixed_decimal::ffi::FixedDecimal, locale::ffi::Locale,
@@ -72,7 +71,7 @@ pub mod ffi {
         /// Formats a [`FixedDecimal`] to a string.
         #[diplomat::rust_link(icu::decimal::FixedDecimalFormatter::format, FnInStruct)]
         pub fn format_write(&self, value: &FixedDecimal, write: &mut DiplomatWrite) {
-            self.0.format(&fixed_decimal_value.0).write_to(write).unwrap();
+            self.0.format(&value.0).write_to(write).unwrap();
             write.flush();
         }
     }
