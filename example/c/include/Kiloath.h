@@ -17,6 +17,8 @@
 
 void Kiloath_greeting(DiplomatStringView name, DiplomatWrite* write);
 
+void Kiloath_greeting_u(DiplomatStringView name, DiplomatWrite* write);
+
 
 void Kiloath_destroy(Kiloath* self);
 

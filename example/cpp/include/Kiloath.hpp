@@ -18,6 +18,8 @@ namespace capi {
     
     void Kiloath_greeting(diplomat::capi::DiplomatStringView name, diplomat::capi::DiplomatWrite* write);
     
+    void Kiloath_greeting_u(diplomat::capi::DiplomatStringView name, diplomat::capi::DiplomatWrite* write);
+    
     
     void Kiloath_destroy(Kiloath* self);
     
@@ -29,6 +31,14 @@ inline std::string Kiloath::greeting(std::string_view name) {
   std::string output;
   diplomat::capi::DiplomatWrite write = diplomat::WriteFromString(output);
   diplomat::capi::Kiloath_greeting({name.data(), name.size()},
+    &write);
+  return output;
+}
+
+inline std::string Kiloath::greeting_u(std::string_view name) {
+  std::string output;
+  diplomat::capi::DiplomatWrite write = diplomat::WriteFromString(output);
+  diplomat::capi::Kiloath_greeting_u({name.data(), name.size()},
     &write);
   return output;
 }

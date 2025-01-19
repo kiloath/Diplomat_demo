@@ -21,6 +21,8 @@ public:
 
   inline static std::string greeting(std::string_view name);
 
+  inline static std::string greeting_u(std::string_view name);
+
   inline const diplomat::capi::Kiloath* AsFFI() const;
   inline diplomat::capi::Kiloath* AsFFI();
   inline static const Kiloath* FromFFI(const diplomat::capi::Kiloath* ptr);

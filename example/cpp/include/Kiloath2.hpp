@@ -18,6 +18,8 @@ namespace capi {
     
     diplomat::capi::Kiloath2* Kiloath2_new(diplomat::capi::DiplomatStringView name);
     
+    diplomat::capi::Kiloath2* Kiloath2_new_u(diplomat::capi::DiplomatStringView name);
+    
     void Kiloath2_greeting(diplomat::capi::Kiloath2* self, diplomat::capi::DiplomatWrite* write);
     
     
@@ -29,6 +31,11 @@ namespace capi {
 
 inline std::unique_ptr<Kiloath2> Kiloath2::new_(std::string_view name) {
   auto result = diplomat::capi::Kiloath2_new({name.data(), name.size()});
+  return std::unique_ptr<Kiloath2>(Kiloath2::FromFFI(result));
+}
+
+inline std::unique_ptr<Kiloath2> Kiloath2::new_u(std::string_view name) {
+  auto result = diplomat::capi::Kiloath2_new_u({name.data(), name.size()});
   return std::unique_ptr<Kiloath2>(Kiloath2::FromFFI(result));
 }
 

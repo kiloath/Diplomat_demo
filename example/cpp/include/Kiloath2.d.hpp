@@ -21,6 +21,8 @@ public:
 
   inline static std::unique_ptr<Kiloath2> new_(std::string_view name);
 
+  inline static std::unique_ptr<Kiloath2> new_u(std::string_view name);
+
   inline std::string greeting();
 
   inline const diplomat::capi::Kiloath2* AsFFI() const;

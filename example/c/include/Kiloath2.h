@@ -17,6 +17,8 @@
 
 Kiloath2* Kiloath2_new(DiplomatStringView name);
 
+Kiloath2* Kiloath2_new_u(DiplomatStringView name);
+
 void Kiloath2_greeting(Kiloath2* self, DiplomatWrite* write);
 
 

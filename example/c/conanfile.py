@@ -49,6 +49,10 @@ class diplomat_exampleRecipe(ConanFile):
             cmake.configure(
                 variables={"LIBS": ";".join(glob.glob(f"{rust_output_dir}/*.dll.lib"))}
             )
+        elif self.settings.os == "Linux":
+            cmake.configure(
+                variables={"LIBS": "dl;pthread;m;" + ";".join(glob.glob(f"{rust_output_dir}/*.a"))}
+            )
         cmake.build()
         dst = os.path.join(self.build_folder, str(self.settings.build_type))
         if self.settings.os == "Windows":

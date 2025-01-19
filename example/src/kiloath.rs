@@ -8,8 +8,10 @@ mod ffi {
     
     impl Kiloath {
         pub fn greeting(name: &DiplomatStr, write: &mut DiplomatWrite) {
-            let name_str = big5_to_utf8(name);
-            write!(write, "哈囉, {}", name_str).unwrap();
+            write!(write, "哈囉, {}", big5_to_utf8(name)).unwrap();
+        }
+        pub fn greeting_u(name: &DiplomatStr, write: &mut DiplomatWrite) {
+            write!(write, "哈囉, {}", String::from_utf8(name.to_vec()).unwrap()).unwrap();
         }
     }
     #[diplomat::opaque]
@@ -18,7 +20,9 @@ mod ffi {
         pub fn new(name: &DiplomatStr) -> Box<Kiloath2> {
             Box::new(Kiloath2(big5_to_utf8(name)))
         }
-
+        pub fn new_u(name: &DiplomatStr) -> Box<Kiloath2> {
+            Box::new(Kiloath2(String::from_utf8(name.to_vec()).unwrap()))
+        }
         pub fn greeting(&mut self, write: &mut DiplomatWrite) {
             write!(write, "哈囉, {}", self.0).unwrap();
         }
