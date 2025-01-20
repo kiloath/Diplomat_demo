@@ -1,0 +1,15 @@
+[package]
+name = "rice_01_ffi"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["staticlib", "rlib", "cdylib"]
+
+[dependencies]
+diplomat = { version = "0.9.0", default-features = false }
+diplomat-runtime = { version = "0.9.0", default-features = false }
+encoding_rs = "0.8"
+
+[build-dependencies]
+diplomat-tool = "0.9.0"
