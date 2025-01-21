@@ -9,7 +9,7 @@ from conan.tools.cmake import CMakeToolchain, CMake, cmake_layout, CMakeDeps
 class diplomat_exampleRecipe(ConanFile):
     name = "diplomat_example"
     version = "1.0"
-    package_type = "application"
+    package_type = "library"
 
     # Optional metadata
     license = "<Put the package license here>"
@@ -20,9 +20,19 @@ class diplomat_exampleRecipe(ConanFile):
 
     # Binary configuration
     settings = "os", "compiler", "build_type", "arch"
+    options = {"shared": [True, False], "fPIC": [True, False]}
+    default_options = {"shared": False, "fPIC": True}
 
     # Sources are located in the same place as this recipe, copy them to the recipe
     exports_sources = "CMakeLists.txt", "src/*"
+
+    def config_options(self):
+        if self.settings.os == "Windows":
+            self.options.rm_safe("fPIC")
+
+    def configure(self):
+        if self.options.shared:
+            self.options.rm_safe("fPIC")
 
     def layout(self):
         cmake_layout(self)
@@ -47,17 +57,18 @@ class diplomat_exampleRecipe(ConanFile):
         cmake.configure(variables={"LIBS_DIR": rust_output_dir})
         if self.settings.os == "Windows":
             cmake.configure(
-                variables={"LIBS": ";".join(glob.glob(f"{rust_output_dir}/*.dll.lib"))}
+                # variables={"LIBS": ";".join(glob.glob(f"{rust_output_dir}/*.dll.lib"))}
+                variables={"LIBS": "ws2_32;userenv;ntdll;" + ";".join(glob.glob(f"{rust_output_dir}/*.lib"))}
             )
         elif self.settings.os == "Linux":
             cmake.configure(
                 variables={"LIBS": "dl;pthread;m;" + ";".join(glob.glob(f"{rust_output_dir}/*.a"))}
             )
         cmake.build()
-        dst = os.path.join(self.build_folder, str(self.settings.build_type))
-        if self.settings.os == "Windows":
-            for file in glob.glob(f"{rust_output_dir}/*.dll"):
-                shutil.copy(file, dst)
+        # dst = os.path.join(self.build_folder, str(self.settings.build_type))
+        # if self.settings.os == "Windows":
+        #     for file in glob.glob(f"{rust_output_dir}/*.dll"):
+        #         shutil.copy(file, dst)
 
     def package(self):
         cmake = CMake(self)

@@ -4,6 +4,8 @@
 #include <assert.h>
 #include <string.h>
 
+#include "include/Kiloath.h"
+#include "include/kiloath2.h"
 #include "lib.h"
 void greeting(const char* name)
 {
