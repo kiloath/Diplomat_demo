@@ -23,3 +23,5 @@ feature_tests/demo_gen/demo/** linguist-generated=true
 
 example/c/include/** text=input
 example/cpp/include/** text=input
+rice_01_ffi/c/include/** text=input
+rice_01_ffi/cpp/include/** text=input
