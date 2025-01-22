@@ -1,13 +1,11 @@
 #pragma once
-// #include "include/Kiloath.h"
-// #include "include/kiloath2.h"
 
-#ifdef DIPLOMAT_EXAMPLE_EXPORT
+#ifdef _WIN32
   #define DIPLOMAT_EXAMPLE_API __declspec(dllexport)
 #else
-  #define DIPLOMAT_EXAMPLE_API __declspec(dllimport)
+  #define DIPLOMAT_EXAMPLE_API
 #endif
 
 DIPLOMAT_EXAMPLE_API void greeting(const char* name);
 DIPLOMAT_EXAMPLE_API void greeting2(const char* name);
-// void greeting3(Kiloath2 **kiloath, const char* name);
+// DIPLOMAT_EXAMPLE_API void greeting3(Kiloath2 **kiloath, const char* name);
